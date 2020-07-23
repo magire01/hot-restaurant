@@ -16,7 +16,27 @@ app.use(express.json());
 
 // Star Wars Characters (DATA)
 // =============================================================
-const reservations = [];
+const reservations = [{
+  "customerName": "Saima",
+  "customerEmail": "saima@gmail.com",
+  "phoneNumber": "979-587-0887",
+  "customerID": "saimacool"
+}, {
+  "customerName": "Jessica",
+  "phoneNumber": "303-905-5419",
+  "customerEmail": "testing123@testing.com",
+  "customerID": "codingwithjess"
+}, {
+  "customerName": "wyatt earp",
+  "phoneNumber": "55555555",
+  "customerEmail": "wyatt@wyatt.com",
+  "customerID": "1881"
+}, {
+  "customerName": "Jane Doe",
+  "phoneNumber": "888-555-3838",
+  "customerEmail": "Jane@doe.com",
+  "customerID": "4"
+}];
 
 // Routes
 // =============================================================
@@ -37,21 +57,6 @@ app.get("/reserve", function (req, res) {
 // Displays all characters
 app.get("/api/reservations", function (req, res) {
   return res.json(reservations);
-});
-
-// Displays a single character, or returns false
-app.get("/api/reservations/:id", function (req, res) {
-  const chosen = req.params.reservations;
-
-  console.log(chosen);
-
-  for (var i = 0; i < reservations.length; i++) {
-    if (chosen === reservations[i].routeName) {
-      return res.json(reservations[i]);
-    }
-  }
-
-  return res.json(false);
 });
 
 // Create New Characters - takes in JSON input
