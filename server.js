@@ -1,21 +1,15 @@
-// Dependencies
-// =============================================================
 const express = require("express");
 const path = require("path");
-
-// Sets up the Express App
-// =============================================================
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // Star Wars Characters (DATA)
 // =============================================================
+const waitlist = [{
+  
+}]
 const reservations = [{
   "customerName": "Saima",
   "customerEmail": "saima@gmail.com",
@@ -38,10 +32,6 @@ const reservations = [{
   "customerID": "4"
 }];
 
-// Routes
-// =============================================================
-
-// Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -54,8 +44,11 @@ app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-// Displays all characters
-app.get("/api/reservations", function (req, res) {
+app.get("/waitlist", function(req, res) {
+  return res.json(reservations[i > 4])
+})
+
+app.get("/reservations", function (req, res) {
   return res.json(reservations);
 });
 
