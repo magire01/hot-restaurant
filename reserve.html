@@ -44,9 +44,9 @@
 
     </div>
     <script type="text/javascript">
-      $("#submit-form-btn").on("click", function() {
+      $("#submit-form-btn").on("click", function () {
         event.preventDefault();
-        
+
         const formInfo = {
           formName: $("#form-name").val(),
           formPhone: $("#form-phone").val(),
@@ -54,14 +54,12 @@
           formID: $("#form-id").val()
         }
         console.log(formInfo);
-        
-      });
 
-      $.post("/api/reservations", formInfo)
-        .then(function(data) {
-          console.log("add.html", data);
+        $.post("/api/reservations", formInfo, function (data) {
+          console.log("Response: ", data);
           alert("Reservation added!");
         });
+      });
     </script>
   </body>
 
