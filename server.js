@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { fstat, fstatSync } = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended: true}));
@@ -42,6 +43,7 @@ app.get("/tables", function (req, res) {
 
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
+  fstatSync(data);
 });
 
 app.get("/waitlist", function(req, res) {
