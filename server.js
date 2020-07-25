@@ -1,38 +1,33 @@
+// Imports
 const express = require("express");
 const path = require("path");
-const { fstat, fstatSync } = require("fs");
+const fs = require("fs");
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 
-// Star Wars Characters (DATA)
-// =============================================================
-const waitlist = [{
-  
-}]
-const reservations = [{
-  "customerName": "Saima",
-  "customerEmail": "saima@gmail.com",
-  "phoneNumber": "979-587-0887",
-  "customerID": "saimacool"
-}, {
-  "customerName": "Jessica",
-  "phoneNumber": "303-905-5419",
-  "customerEmail": "testing123@testing.com",
-  "customerID": "codingwithjess"
-}, {
-  "customerName": "wyatt earp",
-  "phoneNumber": "55555555",
-  "customerEmail": "wyatt@wyatt.com",
-  "customerID": "1881"
-}, {
-  "customerName": "Jane Doe",
-  "phoneNumber": "888-555-3838",
-  "customerEmail": "Jane@doe.com",
-  "customerID": "4"
-}];
 
+const reservationsWaitlist = {
+  waitlist: [{
+    "customerName": "Jessica",
+    "phoneNumber": "303-905-5419",
+    "customerEmail": "testing123@testing.com",
+    "customerID": "codingwithjess"
+  }],
+  reservations: [{
+    "customerName": "Saima",
+    "customerEmail": "saima@gmail.com",
+    "phoneNumber": "979-587-0887",
+    "customerID": "saimacool"
+  }]
+};
+
+// Routes
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -43,15 +38,14 @@ app.get("/tables", function (req, res) {
 
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
-  fstatSync(data);
 });
 
-app.get("/waitlist", function(req, res) {
-  return res.json(reservations[i > 4])
+app.get("/waitlist", function (req, res) {
+  return res.json(reservationsWaitlist.waitlist);
 })
 
 app.get("/reservations", function (req, res) {
-  return res.json(reservations);
+  return res.json(reservationsWaitlist.reservations);
 });
 
 // Create New Characters - takes in JSON input
