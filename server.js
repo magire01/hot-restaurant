@@ -1,26 +1,16 @@
+// Imports
 const express = require("express");
 const path = require("path");
-const { fstat, fstatSync } = require("fs");
+const fs = require("fs");
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 
-// Star Wars Characters (DATA)
-// =============================================================
-// const waitlist = [
-//   {
-//   "customerName": "Jane Doe",
-//   "phoneNumber": "888-555-3838",
-//   "customerEmail": "Jane@doe.com",
-//   "customerID": "4"
-// },
-// {
-//   "customerName": "Jane Doe",
-//   "phoneNumber": "888-555-3838",
-//   "customerEmail": "Jane@doe.com",
-//   "customerID": "4"
-// }]
 
 const reservationsWaitlist = {
   waitlist: [{
@@ -52,6 +42,7 @@ const reservationsWaitlist = {
   }]
 };
 
+// Routes
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -62,15 +53,14 @@ app.get("/tables", function (req, res) {
 
 app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
-  fstatSync(data);
 });
 
 app.get("/waitlist", function (req, res) {
-  return res.json(reservations[i > 4])
+  return res.json(reservationsWaitlist.waitlist);
 })
 
 app.get("/reservations", function (req, res) {
-  return res.json(reservations);
+  return res.json(reservationsWaitlist.reservations);
 });
 
 // POST request

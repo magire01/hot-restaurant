@@ -55,11 +55,10 @@
         }
         console.log(formInfo);
 
-      });
-
-      $.post("/api/reservations", formInfo, function (data) {
-        console.log("Response: ", data);
-        alert("Reservation added!");
+        $.post("/api/reservations", formInfo, function (data) {
+          console.log("Response: ", data);
+          alert("Reservation added!");
+        });
       });
     </script>
   </body>
